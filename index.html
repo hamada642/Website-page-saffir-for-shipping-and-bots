@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saffir Maritime & Logistics</title>
+  <style>
+    :root {
+      --primary: #0a2540;
+      --secondary: #00d4ff;
+      --accent: #ffb703;
+      --light: #f8f9fa;
+      --dark: #1a1a1a;
+      --card-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f4f7f6;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), #001220);
+      color: white;
+      padding: 1.5rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: var(--secondary);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--secondary);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero {
+      background: linear-gradient(rgba(10, 37, 64, 0.7), rgba(10, 37, 64, 0.7)), 
+                  url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1200&q=80') center/cover;
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--secondary);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      width: 60px;
+      height: 4px;
+      background: var(--secondary);
+      display: block;
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #2b9348;
+      margin-top: 0.5rem;
+    }
+
+    .service-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      margin-bottom: 3rem;
+      border-left: 5px solid var(--secondary);
+    }
+
+    .service-box ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .contact-card {
+      background: white;
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+
+    .contact-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-item strong {
+      display: block;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">SAFFIR MARITIME</div>
+    <nav>
+      <a onclick="showPage('home')" id="nav-home" class="active">Home & Services</a>
+      <a onclick="showPage('contact')" id="nav-contact">Contact Us</a>
+    </nav>
+  </header>
+
+  <div class="container">
+
+    <!-- PAGE 1: HOME & SERVICES -->
+    <div id="home" class="page active">
+      <div class="hero">
+        <h1>Saffir Marine, Yacht & Car Trading</h1>
+        <p>Premium Maritime Logistics & Vessel Services in Egypt</p>
+      </div>
+
+      <!-- Suez Canal & Ports Services -->
+      <div class="service-box">
+        <h2 style="color: var(--primary);">Suez Canal Transit & Maritime Logistics</h2>
+        <p>We provide full-service agency and operational support across all Egyptian ports: <strong>Port Said, Suez, Adabiya, and El Sokhna Port</strong>.</p>
+        <ul>
+          <li>Payment of Suez Canal transit fees for all vessel types and yachts.</li>
+          <li>International shipping & ocean freight logistics.</li>
+          <li>Comprehensive maritime agency services and vessel husbandry.</li>
+        </ul>
+      </div>
+
+      <!-- Luxury Yachts -->
+      <h2 class="section-title">Yachts & Ships For Sale</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=600&q=80" alt="Yacht">
+          <div class="card-body">
+            <div class="card-title">Executive Cruiser Yacht</div>
+            <p>Luxury marine vessel ideal for private chartering.</p>
+            <div class="price">From $10,000</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Yacht">
+          <div class="card-body">
+            <div class="card-title">Ocean Luxury Yacht</div>
+            <p>Fully-equipped premium yacht for international navigation.</p>
+            <div class="price">Up to $40,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Car Rentals -->
+      <h2 class="section-title">Modern Luxury Car Rentals</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80" alt="Porsche">
+          <div class="card-body">
+            <div class="card-title">Porsche 911 Sport</div>
+            <p>High-performance rental car for business & personal use.</p>
+            <div class="price">Rent from $500 / day</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80" alt="BMW">
+          <div class="card-body">
+            <div class="card-title">BMW M4 Competition</div>
+            <p>Modern luxury sedan providing maximum comfort.</p>
+            <div class="price">Rent from $500 / day</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80" alt="Mercedes">
+          <div class="card-body">
+            <div class="card-title">Mercedes-AMG C63</div>
+            <p>Top-tier luxury executive rental vehicle.</p>
+            <div class="price">Rent from $500 / day</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ships & Maritime Fees -->
+      <h2 class="section-title">Maritime Fleet & Agency Fees</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600&q=80" alt="Cargo Ship">
+          <div class="card-body">
+            <div class="card-title">Container Ship Service</div>
+            <p>Comprehensive port handling & logistics support.</p>
+            <div class="price">Service Fee: $1,000</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1516834474-48c0abc2a88c?auto=format&fit=crop&w=600&q=80" alt="Bulk Carrier">
+          <div class="card-body">
+            <div class="card-title">Bulk Carrier Services</div>
+            <p>Full port clearance in Port Said & Suez ports.</p>
+            <div class="price">Service Fee: $1,000</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Tanker Vessel">
+          <div class="card-body">
+            <div class="card-title">Tanker Vessel Support</div>
+            <p>Complete Suez Canal clearance & handling.</p>
+            <div class="price">Service Fee: $1,000</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=600&q=80" alt="Large Yacht">
+          <div class="card-body">
+            <div class="card-title">Mega Yacht Clearance</div>
+            <p>Dedicated agency service in El Sokhna & Adabiya.</p>
+            <div class="price">Service Fee: $1,000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 2: CONTACT US -->
+    <div id="contact" class="page">
+      <h2 class="section-title">Contact Company Information</h2>
+      
+      <div class="contact-card">
+        <div class="contact-item">
+          <strong>Company Name:</strong>
+          <span>SAFFIR Marine Shipping & Logistics Services</span>
+        </div>
+        <div class="contact-item">
+          <strong>Owner / Founder:</strong>
+          <span>Mohamed Al Sagir</span>
+        </div>
+        <div class="contact-item">
+          <strong>Executive Manager:</strong>
+          <span>Mohamed Said</span>
+        </div>
+        <div class="contact-item">
+          <strong>Customer Support Email:</strong>
+          <span>godast88@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <strong>Phone & WhatsApp:</strong>
+          <span>+201206899434</span>
+        </div>
+      </div>
+
+      <h2 class="section-title">Fleet Gallery</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=600&q=80" alt="Yacht Gallery">
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600&q=80" alt="Ship Gallery">
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Vessel Gallery">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; SAFFIR Maritime Services & Shipping Co. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.querySelectorAll('nav a').forEach(link => {
+        link.classList.remove('active');
+      });
+
+      document.getElementById(pageId).classList.add('active');
+      document.getElementById('nav-' + pageId).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  </script>
+</body>
+</html>
